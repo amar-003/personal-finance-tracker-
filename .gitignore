@@ -1,0 +1,38 @@
+# Environment variables and local secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# JavaScript
+node_modules/
+
+# Generated outputs
+build/
+dist/
+coverage/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Local datasets and sensitive financial data
+ml/data/raw/*
+ml/data/processed/*
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.pkl
+*.joblib
+*.log
+.streamlit/secrets.toml
+
+# Editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

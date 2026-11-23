@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f6f2">
+  <title>Smart Personal Finance Predictor &amp; Analyzer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar"><a class="brand" href="/"><span class="brand-mark">✳</span> <span>pocketwise</span></a><span class="local-status"><i></i> Your data stays on this device</span></header>
+    <main>
+      <section class="hero"><div><p class="eyebrow">YOUR MONEY, IN FOCUS</p><h1>Smart Personal Finance<br class="desktop-break"> Predictor &amp; Analyzer</h1><p class="subtitle">A clearer view of your spending, one transaction at a time.</p></div><div class="hero-orb" aria-hidden="true">↗</div></section>
+      <div id="notice" class="notice" role="status" hidden></div>
+      <section class="import-panel panel"><div class="section-heading"><div><p class="eyebrow">GET STARTED</p><h2>Bring in your transactions</h2></div><span class="step-pill">CSV · 1 minute</span></div><div class="import-row"><label class="dropzone" for="csv-file"><span class="upload-icon">↑</span><span><strong id="file-label">Choose a CSV file</strong><small>Date, description, and amount columns are required. Category is optional.</small></span><input id="csv-file" type="file" accept=".csv,text/csv"></label><label class="replace-toggle"><input id="replace-data" type="checkbox" checked><span class="toggle-ui"></span><span>Replace existing history</span></label><button id="import-button" class="button button-primary" disabled>Import transactions <span>→</span></button></div></section>
+      <section class="dashboard-section"><div class="section-heading dashboard-heading"><div><p class="eyebrow">YOUR OVERVIEW</p><h2>Spending at a glance</h2></div><div class="filters"><label>From <input type="date" id="date-from"></label><label>To <input type="date" id="date-to"></label><label class="search-label">Search <input id="search" type="search" placeholder="Merchant or note"></label></div></div>
+        <div id="empty-state" class="empty-state panel"><div class="empty-art">◎</div><h3>Your dashboard is ready</h3><p>Import a transaction CSV to see trends, categories, and personalized estimates.</p></div>
+        <div id="dashboard-content" hidden>
+          <div class="metrics"><article class="metric panel"><span class="metric-label">Transactions</span><strong id="metric-count">0</strong><span class="metric-foot">in selected period</span></article><article class="metric panel"><span class="metric-label">Total spend</span><strong id="metric-total">0</strong><span class="metric-foot">across all activity</span></article><article class="metric panel"><span class="metric-label">Average transaction</span><strong id="metric-average">0</strong><span class="metric-foot">per transaction</span></article><article class="metric panel accent-metric"><span class="metric-label">Top category</span><strong id="metric-category">—</strong><span class="metric-foot">by total spend</span></article></div>
+          <nav class="tabs" aria-label="Analysis views"><button class="tab active" data-tab="overview">Overview</button><button class="tab" data-tab="analysis">Monthly analysis</button><button class="tab" data-tab="predict">Category prediction</button><button class="tab" data-tab="forecast">30-day forecast</button><button class="tab" data-tab="health">Health estimate</button></nav>
+          <section class="tab-content" id="tab-overview"><div class="chart-grid"><article class="panel chart-panel"><div class="panel-title"><div><h3>Spending over time</h3><p>Daily transaction totals</p></div><span class="chart-key"><i></i> Spend</span></div><div id="spend-chart" class="chart"></div></article><article class="panel chart-panel"><div class="panel-title"><div><h3>Where it goes</h3><p>Spend by category</p></div></div><div id="category-chart" class="category-list"></div></article></div><article class="panel table-panel"><div class="panel-title"><div><h3>Recent transactions</h3><p id="transaction-caption">Latest activity</p></div></div><div class="table-wrap"><table><thead><tr><th>Date</th><th>Description</th><th>Category</th><th class="right">Amount</th></tr></thead><tbody id="transactions-body"></tbody></table></div></article></section>
+          <section class="tab-content tool-panel panel" id="tab-analysis" hidden><div class="tool-intro"><p class="eyebrow">SPENDING INSIGHTS</p><h3>Monthly spending analysis</h3><p>A summary of your latest month and the categories with the greatest spend.</p></div><button id="analysis-button" class="button button-primary">Refresh analysis →</button><div id="analysis-result" class="result-box" hidden></div></section>
+          <section class="tab-content tool-panel panel" id="tab-predict" hidden><div class="tool-intro"><p class="eyebrow">SMART CLASSIFICATION</p><h3>Predict a category</h3><p>Use your imported history to estimate the category of a transaction.</p></div><form id="predict-form" class="form-grid"><label>Description<input name="description" required placeholder="e.g. Neighborhood grocery store"></label><label>Amount<input name="amount" type="number" min="0" step="0.01" required placeholder="0.00"></label><button class="button button-primary" type="submit">Predict category →</button></form><div id="predict-result" class="result-box" hidden></div></section>
+          <section class="tab-content tool-panel panel" id="tab-forecast" hidden><div class="tool-intro"><p class="eyebrow">LOOKING AHEAD</p><h3>Your 30-day forecast</h3><p>Estimate upcoming daily spend using your transaction history.</p></div><button id="forecast-button" class="button button-primary">Generate forecast →</button><div id="forecast-result" class="result-box" hidden></div><div id="forecast-chart" class="chart forecast-chart" hidden></div><p id="forecast-note" class="fine-print" hidden>Forecasts are estimates based on historical spending, not guaranteed outcomes.</p></section>
+          <section class="tab-content tool-panel panel" id="tab-health" hidden><div class="tool-intro"><p class="eyebrow">A SIMPLE CHECK-IN</p><h3>Financial health estimate</h3><p>A transparent educational heuristic based on your inputs and spending history.</p></div><form id="health-form" class="form-grid health-form"><label>Monthly income<input name="monthly_income" type="number" min="0.01" step="0.01" value="3000" required></label><label>Monthly debt payments<input name="monthly_debt_payments" type="number" min="0" step="0.01" value="0" required></label><label>Current savings balance<input name="savings_balance" type="number" min="0" step="0.01" value="0" required></label><button class="button button-primary" type="submit">Calculate estimate →</button><fieldset><legend>Discretionary categories</legend><div id="category-options" class="check-options"></div></fieldset></form><div id="health-result" class="result-box" hidden></div><p class="fine-print">Educational estimate only; this is not financial advice.</p></section>
+        </div>
+      </section>
+      <section class="planning-section" id="planning">
+        <div class="section-heading planning-heading"><div><p class="eyebrow">MAKE A PLAN</p><h2>Budgets &amp; savings goals</h2><p class="planning-subtitle">Set spending limits and track progress toward what matters to you.</p></div></div>
+        <div class="planning-grid">
+          <article class="panel planning-panel">
+            <div class="panel-title"><div><h3>Monthly budgets</h3><p>Set an overall limit or a category-specific budget.</p></div></div>
+            <form id="budget-form" class="planning-form">
+              <label>Month<input id="budget-month" name="month" type="month" required></label>
+              <label>Category<select id="budget-category" name="category"><option value="">All spending</option></select></label>
+              <label>Budget amount<input name="amount" type="number" min="0.01" step="0.01" required placeholder="0.00"></label>
+              <button class="button button-primary" type="submit">Save budget</button>
+            </form>
+            <div id="budget-list" class="planning-list"></div>
+          </article>
+          <article class="panel planning-panel">
+            <div class="panel-title"><div><h3>Savings goals</h3><p>Track a target amount and date; update progress as you save.</p></div></div>
+            <form id="goal-form" class="planning-form">
+              <label>Goal name<input name="name" maxlength="100" required placeholder="e.g. Emergency fund"></label>
+              <label>Target amount<input name="target_amount" type="number" min="0.01" step="0.01" required placeholder="0.00"></label>
+              <label>Already saved<input name="current_amount" type="number" min="0" step="0.01" value="0" required></label>
+              <label>Target date<input name="target_date" type="date" required></label>
+              <button class="button button-primary" type="submit">Create savings goal</button>
+            </form>
+            <div id="goals-list" class="planning-list"></div>
+          </article>
+        </div>
+      </section>
+      <footer>Built for a more mindful relationship with money <span>✳</span></footer>
+    </main>
+  </div>
+  <script src="/app.js" defer></script>
+</body>
+</html>

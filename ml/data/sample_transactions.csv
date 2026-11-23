@@ -1,0 +1,31 @@
+transaction_date,description,amount,category
+2026-09-01,Fresh grocery market,68.40,Groceries
+2026-09-03,Monthly apartment rent,950.00,Housing
+2026-09-05,City bus pass,32.00,Transport
+2026-09-07,Coffee shop,8.75,Dining
+2026-09-09,Neighborhood supermarket,54.20,Groceries
+2026-09-11,Electric utility bill,74.60,Utilities
+2026-09-13,Pharmacy purchase,18.30,Healthcare
+2026-09-15,Restaurant dinner,42.50,Dining
+2026-09-17,Monthly apartment rent,950.00,Housing
+2026-09-19,Gas station,39.80,Transport
+2026-09-21,Weekly grocery shop,71.25,Groceries
+2026-09-23,Streaming subscription,14.99,Entertainment
+2026-09-25,Water utility bill,28.40,Utilities
+2026-09-27,Takeaway lunch,17.60,Dining
+2026-09-29,Pharmacy purchase,12.90,Healthcare
+2026-10-01,Fresh grocery market,63.10,Groceries
+2026-10-03,Monthly apartment rent,950.00,Housing
+2026-10-05,Train ticket,24.50,Transport
+2026-10-07,Coffee shop,9.20,Dining
+2026-10-09,Neighborhood supermarket,82.30,Groceries
+2026-10-11,Electric utility bill,69.75,Utilities
+2026-10-13,Pharmacy purchase,23.40,Healthcare
+2026-10-15,Restaurant dinner,36.80,Dining
+2026-10-17,Monthly apartment rent,950.00,Housing
+2026-10-19,Gas station,44.10,Transport
+2026-10-21,Weekly grocery shop,58.65,Groceries
+2026-10-23,Streaming subscription,14.99,Entertainment
+2026-10-25,Water utility bill,31.20,Utilities
+2026-10-27,Takeaway lunch,21.40,Dining
+2026-10-29,Pharmacy purchase,16.80,Healthcare
